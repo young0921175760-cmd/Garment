@@ -1,15 +1,15 @@
 # Garment
 An analysis for garment factory production
 
-# 專案概述 (Project Overview)
+### 專案概述 (Project Overview)
 本專案旨在解決成衣廠管理中「數據過量但洞察不足」的問題。透過 SQL 進行大規模數據聚合與 Python 視覺化分析，我將複雜的每日生產數據轉化為直觀的「時序熱點矩陣」，協助管理者在秒級時間內鎖定績效異常團隊並辨識全廠性生產趨勢。
 
-# 核心價值 (Core Value)
+### 核心價值 (Core Value)
 自動化診斷：取代傳統手動報表，自動計算實際與目標產出的「效率缺口 (Efficiency Gap)」。
 多維度洞察：結合「時序波動」與「團隊長期均值」，區分短期意外與結構性問題。
 決策優化：透過自動排序邏輯，強迫決策者關注績效後段班（Bottom Performers）。
 
-# 技術路徑 (Technical Workflow)
+### 技術路徑 (Technical Workflow)
 1. 資料庫處理 (SQL - MySQL)
    原始資料存在日期格式不一且粒度過細的問題。我透過 SQL 進行了預處理：
      資料清洗：使用 STR_TO_DATE 將非標準字串轉換為 DATE 格式。
@@ -21,7 +21,7 @@ An analysis for garment factory production
      自動化排序系統：開發自定義函數，根據團隊全期平均績效（Total Avg）進行降序排列，使圖表具備「績效階梯」效果。
      視覺心理學應用：選用 RdYlGn (紅-黃-綠) 發散配色，以 0 作為中心點，使未達標區域（紅色）極具視覺衝擊力。
 
-# 關鍵分析與發現 (Key Insights)
+### 關鍵分析與發現 (Key Insights)
 根據分析結果，我提出了以下五點管理建議：
 
 1. 長期績效缺口：Team 7, 8, 9 的總體平均皆為負值（紅色），顯示其存在結構性生產瓶頸，建議進行 SOP 審核。
