@@ -1,1 +1,6 @@
-
+pandas
+statsmodels
+sqlalchemy
+pymysql
+matplotlib
+seaborn
