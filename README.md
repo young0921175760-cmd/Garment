@@ -1,18 +1,26 @@
 # 成衣生產效率診斷與瓶頸分析 （Garment Production Efficiency Diagnosis & Bottleneck Analysis）
 利用 SQL 與 Python 實現數據驅動決策
 
-### 業務問題 (Business Problem)
-- 痛點：工廠每日產生大量數據，但管理層難以快速識別哪些生產線（Team）處於亞健康狀態。
-- 目標：建立自動化監控機制，找出「效率缺口（Efficiency Gap）」並量化影響因子（如閒置人力、加班、款式變更）。
+### 專案背景與業務問題 (Project Overview)
+在製造管理中，單純的產出數據往往無法揭示「效率流失」的根因。本專案透過分析成衣廠 12 個團隊的生產數據，旨在解決以下核心問題：
+- 識別異常：從大量數據中快速鎖定績效落後的生產線（Team）。
+- 量化風險：驗證「閒置人力 (Idle Men)」與「標準 (Standard Minute Value)」對排程進度的實質影響。
+- 資源優化：提供管理層預警指標，協助優化人力配置以縮減效率缺口 (Efficiency Gap)。
 
 
-### 技術亮點 (Technical Highlights)
-- SQL 資料清洗：強調處理日期格式不一、時間維度聚合（Week-level）的能力。
-- 熱力圖 (Heatmap) 矩陣：強調視覺心理學應用，利用 RdYlGn 配色讓管理層在 3 秒內鎖定負值區域。
-- 統計驗證 (Regression Analysis)：不只是看圖說故事，而是透過 $p$-value 與係數證明 idle_men 與 department_sewing 是導致效率滑坡的主因。
+### 技術亮點 (Technical Workflow)
+- 資料清洗 (SQL - MySQL)：
+  - 處理非標準日期字串，並使用 YEARWEEK 進行時間維度聚合，以平滑單日波動。
+  - 修正Department中的拼字錯誤 sweing -> sewing
+  - 修正Department中因多一個空格而產生的髒資料 finishing_ -> finishing
+ 
+- 數據分析與自動化視覺化 (Python - Pandas, Seaborn)：
+  - 效率矩陣 (Heatmap)：開發自動化排序邏輯，結合視覺心理學（RdYlGn 配色）快速定位 Team 10 的極端負值區域（-0.24）。
+  - 回歸統計驗證 (OLS Regression)：使用 statsmodels 進行顯著性檢定，證實 idle_men 與效率下降呈高度負相關 ($p < 0.05$)。
+  - 趨勢分析：結合 Bar Chart 追蹤全廠週期性波動，發現第 8、9 週的集體效率下滑。
 
-  
+
 ### 關鍵洞察與行動建議 (Insights & Action)
-- 異常診斷：Team 10 在 Week：201508 的暴跌可能與兩筆資料中皆有Idle_men激增至35人有關，詳細內容可能還需要去現場了解狀況。
-- 全廠趨勢：第 8、9 週的集體下滑與Idle Men 閒置工人發生的事件約有2/3發生在該週呈高度相關。
+- 異常診斷：Team 10 在 Week：201508 的暴跌可能與兩筆資料中皆有 Idle_men 激增至35人有關，詳細內容可能還需要去現場了解狀況。
+- 全廠趨勢：第 8、9 週的集體下滑與 Idle Men 閒置工人發生的事件約有 60% 發生在該週呈高度相關。
 - 標竿學習：Team 1, 3 長期保持正向缺口，具備 SOP 複製價值。
