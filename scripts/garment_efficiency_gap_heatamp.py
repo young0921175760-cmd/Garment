@@ -6,7 +6,6 @@ from matplotlib import gridspec
 
 
 # 1. 設定資料庫連線資訊 
-# 格式: mysql+pymysql://帳號:密碼@主機位址:連接埠/資料庫名稱
 user = 'root'
 password = 'young0960102123'
 host = 'localhost'
