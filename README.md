@@ -1,8 +1,7 @@
-# Garment
-An analysis for garment factory production
+# 成衣廠產線分析Garment production analysis 
 
 ### 專案概述 (Project Overview)
-本專案旨在解決成衣廠管理中「數據過量但洞察不足」的問題。透過 SQL 進行大規模數據聚合與 Python 視覺化分析，我將複雜的每日生產數據轉化為直觀的「時序熱點矩陣」，協助管理者在秒級時間內鎖定績效異常團隊並辨識全廠性生產趨勢。
+本專案旨在解決成衣廠管理中「數據過量但洞察不足」的問題。透過 SQL 進行大規模數據聚合與 Python 視覺化分析，我將複雜的每日生產數據轉化為直觀的「時序熱點矩陣」，協助管理者在秒級時間內鎖定績效異常團隊並辨識全廠性生產趨勢，並透過回歸分析來分析各種生產中的變量對設定的KPI效率缺口的影響，以此來對產線的生產狀況做分析。
 
 ### 核心價值 (Core Value)
 自動化診斷：取代傳統手動報表，自動計算實際與目標產出的「效率缺口 (Efficiency Gap)」。
@@ -17,9 +16,10 @@ An analysis for garment factory production
      關鍵指標定義：$$Efficiency\ Gap = Actual\ Productivity - Targeted\ Productivity$$
   
 2. 數據分析與視覺化 (Python - Pandas & Seaborn)
-     矩陣轉換 (Pivot)：將長格式資料轉換為寬格式矩陣，建立以 Team 為縱軸、週別為橫軸的分析基礎。
-     自動化排序系統：開發自定義函數，根據團隊全期平均績效（Total Avg）進行降序排列，使圖表具備「績效階梯」效果。
-     視覺心理學應用：選用 RdYlGn (紅-黃-綠) 發散配色，以 0 作為中心點，使未達標區域（紅色）極具視覺衝擊力。
+-- 矩陣轉換 (Pivot)：將長格式資料轉換為寬格式矩陣，建立以 Team 為縱軸、週別為橫軸的分析基礎。
+-- 回歸分析（Regression）：以回歸分析來將生產中不同的變量與efficiency gap的關係與影響呈現出來。
+-- 自動化排序系統：開發自定義函數，根據團隊全期平均績效（Total Avg）進行降序排列，使圖表具備「績效階梯」效果。
+-- 視覺心理學應用：選用 RdYlGn (紅-黃-綠) 發散配色，以 0 作為中心點，使未達標區域（紅色）極具視覺衝擊力。
 
 ### 關鍵分析與發現 (Key Insights)
 根據分析結果，我提出了以下五點管理建議：
