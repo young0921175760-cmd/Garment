@@ -1,5 +1,5 @@
-# Garment Production Efficiency Diagnosis & Bottleneck Analysis（成衣生產效率診斷與瓶頸分析：利用 SQL 與 Python 實現數據驅動決策）
-
+# 成衣生產效率診斷與瓶頸分析 （Garment Production Efficiency Diagnosis & Bottleneck Analysis）
+利用 SQL 與 Python 實現數據驅動決策
 
 ### 業務問題 (Business Problem)
 - 痛點：工廠每日產生大量數據，但管理層難以快速識別哪些生產線（Team）處於亞健康狀態。
