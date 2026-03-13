@@ -17,8 +17,7 @@
   - **效率矩陣 (Heatmap)**：開發自動化排序邏輯，結合視覺心理學（RdYlGn 配色）快速定位 Team 10 的極端負值區域（-0.24）。
   - **回歸統計驗證 (OLS Regression)**：使用 statsmodels 進行顯著性檢定，證實 idle_men 與效率下降呈高度負相關 ($p < 0.05$)。
   - **趨勢分析**：結合 Bar Chart 追蹤全廠週期性波動，發現第 8、9 週的集體效率下滑。
-  ![Regression Analysis](regression_coefficients.png)
-
+![Regression Analysis](regression_coefficients.png)
 
 ### 關鍵洞察與行動建議 (Insights & Action)
 - **異常診斷Team 10** ：在 Week：201508 的暴跌可能與兩筆資料中皆有 Idle_men 激增至35人有關，詳細內容可能還需要去現場了解狀況。
