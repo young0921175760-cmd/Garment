@@ -16,7 +16,7 @@
 - **數據分析與自動化視覺化** (Python - Pandas, Seaborn)：
   - **效率矩陣 (Heatmap)**：開發自動化排序邏輯，結合視覺心理學（RdYlGn 配色）快速定位 Team 10 的極端負值區域（-0.24）。
   - **趨勢分析**：結合 Bar Chart 追蹤全廠週期性波動，發現第 8、9 週的集體效率下滑。
-  - **回歸統計驗證 (OLS Regression)**：使用 statsmodels 進行顯著性檢定，證實 idle_men 與效率下降呈高度負相關 ($p < 0.05$)，以及裁縫部門為主要產能落後的部門。
+  - **回歸統計驗證 (OLS Regression)**：使用 statsmodels 進行顯著性檢定，證實 idle_men 與效率下降呈高度負相關 ($p < 0.05$)，以及裁縫部門為主要產能缺口較大的部門。
 
     
 ![Regression Analysis](visuals/regression_coefficients.png)
