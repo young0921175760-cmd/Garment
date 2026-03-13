@@ -73,7 +73,6 @@ print(model.summary())
 
 # ---------------------- 圖表設定 -------------------------------------------
 
-# 設定中文字體 (如果你的環境支援) 或使用基礎樣式
 plt.style.use('ggplot')
 plt.rcParams['figure.figsize'] = (10, 6)
 
@@ -97,14 +96,13 @@ def plot_coefficients_clean_labeled(model):
     eb = ax.errorbar(coef_df['Coef'], coef_df['Feature'], xerr=coef_df['Error'], 
                      fmt='o', color='royalblue', capsize=5, markersize=8)
     
-    # --- 修改：智能標註數值，避免擋線 ---
+   
     for i, row in enumerate(coef_df.itertuples()):
-        # 特別處理裁縫部 (因為它的線最長)
         if row.Feature == 'department_sewing':
             # 將數值放正下方 (va='top', y偏移量為負)
             ax.annotate(f'{row.Coef:.4f}', 
                         xy=(row.Coef, i), 
-                        xytext=(0, 15), # 向下偏移 15 像素
+                        xytext=(0, 15), 
                         textcoords='offset points',
                         ha='center', # 水平置中
                         va='top', # 垂直靠上
@@ -112,7 +110,6 @@ def plot_coefficients_clean_labeled(model):
                         fontweight='bold',
                         color='darkblue')
         else:
-            # 其他較短的線，維持在左右兩側，但稍微加大距離
             ha_pos = 'left' if row.Coef >= 0 else 'right'
             txt_offset = 12 if row.Coef >= 0 else -12
             ax.annotate(f'{row.Coef:.4f}', 
@@ -131,17 +128,15 @@ def plot_coefficients_clean_labeled(model):
     ax.set_xlabel('Coefficient Value', fontsize=12)
     ax.grid(True, linestyle=':', alpha=0.6)
     
-    # --- 修改：精確調整 X 軸範圍，切掉右邊留白 ---
-    # 找出數據的真實邊界 (考慮誤差棒和文字標籤)
+    # 找出數據的真實邊界
     x_min = coef_df['Coef'].min() - coef_df['Error'].max() - 0.02 # 左邊多留一點給裁縫部的線
     x_max = coef_df['Coef'].max() + coef_df['Error'].max() + 0.02 # 右邊只留一點點
     
-    # 設定精確的 X 軸極限，切掉多餘留白
+    # 設定 X 軸極限
     ax.set_xlim(x_min, x_max)
 
     plt.tight_layout()
     plt.savefig('regression_coefficients_cleaned.png', dpi=300)
     plt.show()
 
-# 執行
 plot_coefficients_clean_labeled(model)
