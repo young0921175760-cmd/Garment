@@ -24,7 +24,7 @@ SELECT *
 FROM `garment`
 
 """
-# 1. (前略) 執行 SQL 並取得 df...
+# 1. 執行 SQL 
 df = pd.read_sql(sql_query, engine)
 
 
@@ -32,7 +32,7 @@ df = pd.read_sql(sql_query, engine)
 df['department'] = df['department'].str.strip()
 print(df['department'].unique())
 
-# 處理缺失值 (關鍵！)
+# 處理缺失值 
 df['wip'] = df['wip'].fillna(0)
 df['wip_load'] = df['wip_load'].fillna(0)
 
@@ -40,7 +40,6 @@ df['wip_load'] = df['wip_load'].fillna(0)
 df = pd.get_dummies(df, columns=['department'], drop_first=True)
 
 # 4. 設定自變數 (X) 與 因變數 (y)
-# 這裡挑選你認為有影響的欄位
 features = [
     'smv', 
     'overtime_per_worker', 
@@ -54,19 +53,17 @@ features = [
 X = df[features].apply(pd.to_numeric, errors='coerce')
 y = df['efficiency_gap'].apply(pd.to_numeric, errors='coerce')
 
-# 2. 處理 NaN（這步很重要，因為 to_numeric 可能會產生新的 NaN）
+# 2. 處理 NaN
 X = X.fillna(0)
 y = y.fillna(0)
 
-# 3. 【關鍵點】強制將整個 DataFrame 轉換為 float64 型態
-# 這樣能徹底解決 "dtype of object" 的報錯
+# 3. 將整個 DataFrame 轉換為 float64 
 X = X.astype(float)
 y = y.astype(float)
 
 # 4. 加入常數項
 X = sm.add_constant(X)
 
-# 5. 現在跑 OLS 就不會報錯了
 model = sm.OLS(y, X).fit()
 print(model.summary())
 
