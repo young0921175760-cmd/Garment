@@ -1,4 +1,5 @@
-# 成衣生產效率診斷與瓶頸分析 （Garment Production Efficiency Diagnosis & Bottleneck Analysis）
+# 成衣生產效率診斷與瓶頸分析 
+# Garment Production Efficiency Diagnosis & Bottleneck Analysis
 
 ### 專案背景與業務問題 (Project Overview)
 在製造管理中，單純的產出數據往往無法揭示「效率流失」的根因。本專案透過分析成衣廠 12 個團隊的生產數據，旨在解決以下核心問題：
